@@ -1,6 +1,6 @@
 # STEM-HOME
 
-## DESCRIPTION
+# DESCRIPTION
 STEM-HOME is a Home automation system for controlling and monitoring your home appliance through an IoT dashboard.
 
 ### Features
@@ -24,10 +24,10 @@ The system is build with esp8266 Arduino compatible microcontroller.
 *	Relays.
 *	Liquid Crystal Display (16X2 alphanumeric LCD).
 
-# SOFTWARE
+### SOFTWARE
 
 ## stem-home.ino (Main)
-The main code, written in C/C++.
+The main code, written in C++.
 
 
 ## Libraries
