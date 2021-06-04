@@ -1,7 +1,9 @@
 #include<ESP8266WiFi.h>
+#include<ESP8266WiFiMulti.h>
 #include<LiquidCrystal_I2C.h>
 #include <DHT.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+ESP8266WiFiMulti wifimulti;
 
 
 //Constants
@@ -38,6 +40,33 @@ void setup() {
   lcd.begin();
   lcd.backlight();
   pinMode(Sensor_Pin, INPUT);
+
+  wifimulti.addAP("", ""); //Add multiple networks to connect to
+  wifimulti.addAP("", "");
+  wifimulti.addAP("", "");
+  wifimulti.addAP("", "");
+  lcd.print("Connecting");
+  Serial.print("Connecting");
+  while (wifimulti.run() != WL_CONNECTED) {
+    lcd.print(".");
+    Serial.print(".");
+    delay(1000);
+  }
+  delay(500);
+  lcd.clear();
+  lcd.print("Connected to:");
+  Serial.print("\nConnected to: ");
+  lcd.setCursor(0, 1);
+  lcd.print(WiFi.SSID());
+  Serial.println(WiFi.SSID());
+  delay(1000);
+  lcd.clear();
+  lcd.print("IP Adress:");
+  Serial.print("IP Adress: ");
+  lcd.setCursor(0, 1);
+  lcd.print(WiFi.localIP());
+  Serial.println(WiFi.localIP());
+  delay(1000);
 }
 
 void loop() {
@@ -62,7 +91,7 @@ void getACS712() {  // for AC
   last_time = current_time;
   current_time = millis();
   Wh = Wh +  power * (( current_time - last_time) / 3600000.0) ; // calculating energy in Watt-Hour
-//  bill_amount = Wh * (energyTariff / 1000);
+  //  bill_amount = Wh * (energyTariff / 1000);
   Serial.print("Irms:  ");
   Serial.print(String(Irms, 2));
   Serial.println(" A");
