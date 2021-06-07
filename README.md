@@ -1,7 +1,6 @@
-# STEM-HOME
 
 # DESCRIPTION
-STEM-HOME is a Home automation system for controlling and monitoring your home appliance through an IoT dashboard.
+A Home automation system for controlling and monitoring your home appliance through an IoT dashboard.
 
 ### Features
 
